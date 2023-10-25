@@ -4,7 +4,7 @@ AOS.init({
 	easing: 'slide'
 });
 
-$(function () {
+function init() {
 
 
 	$(window).stellar({
@@ -213,6 +213,7 @@ $(function () {
 
 					$('body .ftco-animate.item-animate').each(function (k) {
 						var el = $(this);
+						var delay = el.data('animate-delay');
 						setTimeout(function () {
 							var effect = el.data('animate-effect');
 							if (effect === 'fadeIn') {
@@ -221,11 +222,13 @@ $(function () {
 								el.addClass('fadeInLeft ftco-animated');
 							} else if (effect === 'fadeInRight') {
 								el.addClass('fadeInRight ftco-animated');
+							}  else if (effect === 'slideInRight') {
+								el.addClass('slideInRight ftco-animated');
 							} else {
 								el.addClass('fadeInUp ftco-animated');
 							}
 							el.removeClass('item-animate');
-						}, k * 50, 'easeInOutExpo');
+						}, delay ? k * parseInt(delay) : k * 50, 'easeInOutExpo');
 					});
 
 				}, 100);
@@ -267,4 +270,4 @@ $(function () {
 		fixedContentPos: false
 	});
 
-})
+}
